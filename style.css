@@ -1,1 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.semestre {
+  border: 2px solid #000;
+  padding: 10px;
+  width: 280px;
+}
+.semestre h3 {
+  text-align: center;
+  margin-top: 0;
+}
+.ramo {
+  background-color: #b3e5fc; /* Celeste */
+  padding: 10px;
+  margin: 5px 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.ramo.aprobado {
+  background-color: #ce93d8; /* Morado */
+  text-decoration: line-through;
+}
+.ramo.bloqueado {
+  background-color: #ccc; /* Gris */
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
