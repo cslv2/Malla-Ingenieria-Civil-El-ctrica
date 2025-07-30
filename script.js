@@ -66,7 +66,6 @@ const ramos = [
   { nombre: "IEIE96 - Hito de Evaluación II", codigo: "IEIE96", semestre: 10, prerrequisitos: [] }
 ];
 
-// Estado
 let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
 const semestres = {};
 for (let i = 1; i <= 10; i++) semestres[i] = [];
@@ -74,6 +73,13 @@ ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
 
 function tienePrerrequisitosAprobados(ramo) {
   return ramo.prerrequisitos.every(cod => aprobados.has(cod));
+}
+
+function calcularAvance() {
+  const total = ramos.length;
+  const cantidad = aprobados.size;
+  const porcentaje = ((cantidad / total) * 100).toFixed(1);
+  document.getElementById("avance").textContent = `Avance: ${cantidad}/${total} ramos (${porcentaje}%)`;
 }
 
 function renderMalla() {
@@ -106,7 +112,7 @@ function renderMalla() {
         }
 
         localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
-        renderMalla(); // Recargar para actualizar bloqueos
+        renderMalla(); // Recargar para actualizar bloqueos y avance
       });
 
       div.appendChild(divRamo);
@@ -114,6 +120,9 @@ function renderMalla() {
 
     contenedor.appendChild(div);
   }
+
+  calcularAvance();
 }
 
+// Inicialización
 renderMalla();
