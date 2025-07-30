@@ -1,3 +1,5 @@
+// script.js actualizado para la malla interactiva de ICE
+
 const ramos = [
   // 1º AÑO - Semestre 1
   { nombre: "Introducción al Cálculo", codigo: "INMT11", semestre: 1, prerrequisitos: [] },
