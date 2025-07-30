@@ -66,13 +66,22 @@ header {
   cursor: not-allowed;
 }
 
+.ramo.bloqueado::after {
+  content: \"🔒\";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
 .ramo.aprobado {
   background-color: #d4edda;
   color: #155724;
 }
 
 .ramo.aprobado::after {
-  content: "✓";
+  content: \"✓\";
   position: absolute;
   right: 10px;
   top: 50%;
@@ -80,10 +89,4 @@ header {
   font-weight: bold;
   color: #155724;
 }
-.ramo.bloqueado::after {
-  content: \"🔒\";
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+
