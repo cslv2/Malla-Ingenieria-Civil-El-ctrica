@@ -1,5 +1,3 @@
-// script.js
-
 const ramos = [
   { nombre: "INMT11 - Introducción al Cálculo", codigo: "INMT11", semestre: 1, prerrequisitos: [] },
   { nombre: "INMT12 - Introducción al Álgebra", codigo: "INMT12", semestre: 1, prerrequisitos: [] },
@@ -50,10 +48,10 @@ const ramos = [
   { nombre: "IEIE71 - Evaluación de Proyectos", codigo: "IEIE71", semestre: 7, prerrequisitos: [] },
   { nombre: "IEIE85 - Mención electiva 1", codigo: "IEIE85", semestre: 7, prerrequisitos: [] },
 
-  { nombre: "IEIE87 - Diseño y Gestión de Programas de Operación y Control", codigo: "IEIE87", semestre: 8, prerrequisitos: ["IEIE77"] },
+  { nombre: "IEIE87 - Diseño y Gestión de Programas", codigo: "IEIE87", semestre: 8, prerrequisitos: ["IEIE77"] },
   { nombre: "IEIE82 - Control Automático", codigo: "IEIE82", semestre: 8, prerrequisitos: ["IEIE77", "IEIE67"] },
   { nombre: "IEIE83 - Teoría de las Comunicaciones", codigo: "IEIE83", semestre: 8, prerrequisitos: ["IEIE77"] },
-  { nombre: "IEIE89 - Taller de Proyectos Eléctricos de Nuevas Energías", codigo: "IEIE89", semestre: 8, prerrequisitos: ["IEIE76"] },
+  { nombre: "IEIE89 - Taller de Proyectos Eléctricos", codigo: "IEIE89", semestre: 8, prerrequisitos: ["IEIE76"] },
   { nombre: "INII76 - Emprendimiento II", codigo: "INII76", semestre: 8, prerrequisitos: [] },
   { nombre: "IEIEA2 - Práctica Profesional II", codigo: "IEIEA2", semestre: 8, prerrequisitos: [] },
   { nombre: "IEIE86 - Mención electiva 2", codigo: "IEIE86", semestre: 8, prerrequisitos: [] },
@@ -65,5 +63,57 @@ const ramos = [
   { nombre: "IEIEX3 - Mención electiva 5", codigo: "IEIEX3", semestre: 9, prerrequisitos: [] },
 
   { nombre: "IEIEA3 - Proyecto Final", codigo: "IEIEA3", semestre: 10, prerrequisitos: ["IEIE97", "IEIEA1", "IEIEA2"] },
-  { nombre: "IEIE96 - Hito de Evaluación II", codigo: "IEIE96", semestre: 10, prerrequisitos: [] },
+  { nombre: "IEIE96 - Hito de Evaluación II", codigo: "IEIE96", semestre: 10, prerrequisitos: [] }
 ];
+
+// Estado
+let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
+const semestres = {};
+for (let i = 1; i <= 10; i++) semestres[i] = [];
+ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
+
+function tienePrerrequisitosAprobados(ramo) {
+  return ramo.prerrequisitos.every(cod => aprobados.has(cod));
+}
+
+function renderMalla() {
+  const contenedor = document.getElementById("contenedor-malla");
+  contenedor.innerHTML = "";
+
+  for (const [semestre, lista] of Object.entries(semestres)) {
+    const div = document.createElement("div");
+    div.className = "semestre";
+    div.innerHTML = `<h3>Semestre ${semestre}</h3>`;
+
+    lista.forEach(ramo => {
+      const divRamo = document.createElement("div");
+      divRamo.className = "ramo";
+      divRamo.textContent = ramo.nombre;
+
+      const bloqueado = !tienePrerrequisitosAprobados(ramo);
+      const aprobado = aprobados.has(ramo.codigo);
+
+      if (bloqueado && !aprobado) divRamo.classList.add("bloqueado");
+      if (aprobado) divRamo.classList.add("aprobado");
+
+      divRamo.addEventListener("click", () => {
+        if (divRamo.classList.contains("bloqueado")) return;
+
+        if (aprobados.has(ramo.codigo)) {
+          aprobados.delete(ramo.codigo);
+        } else {
+          aprobados.add(ramo.codigo);
+        }
+
+        localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
+        renderMalla(); // Recargar para actualizar bloqueos
+      });
+
+      div.appendChild(divRamo);
+    });
+
+    contenedor.appendChild(div);
+  }
+}
+
+renderMalla();
