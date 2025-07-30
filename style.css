@@ -1,71 +1,68 @@
 body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f4f6fa;
-  color: #333;
+  padding: 0;
+  background-color: #f5f7fa;
 }
 
 header {
-  background-color: #1d3557;
+  background-color: #004080;
   color: white;
-  padding: 1rem;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.avance {
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 500;
+#avance {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #fff;
 }
 
-main {
+#contenedor-malla {
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding: 2rem;
-  gap: 2rem;
+  padding: 20px;
+  gap: 20px;
 }
 
 .semestre {
-  flex: 0 0 auto;
-  background-color: #ffffff;
-  border: 1px solid #dcdcdc;
-  border-radius: 12px;
-  padding: 1rem;
-  min-width: 220px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  min-width: 250px;
+  flex-shrink: 0;
 }
 
 .semestre h3 {
   text-align: center;
-  color: #1d3557;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  background-color: #004080;
+  color: white;
+  padding: 10px;
+  margin: -15px -15px 15px -15px;
+  border-radius: 10px 10px 0 0;
 }
 
 .ramo {
-  background-color: #a8dadc;
-  padding: 0.6rem;
-  margin: 0.5rem 0;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #e0f0ff;
   border-radius: 6px;
-  text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
   position: relative;
-  transition: all 0.2s ease-in-out;
-  font-size: 0.9rem;
   font-weight: 500;
+  text-align: center;
 }
 
 .ramo:hover {
-  background-color: #74c0c4;
+  background-color: #b6e0ff;
 }
 
 .ramo.bloqueado {
-  background-color: #ccc;
-  color: #777;
+  background-color: #ddd;
+  color: #999;
   cursor: not-allowed;
 }
 
@@ -79,10 +76,9 @@ main {
   transform: translateY(-50%);
 }
 
-.aprobado {
-  background-color: #9d4edd !important;
-  color: white !important;
-  font-weight: bold;
+.ramo.aprobado {
+  background-color: #d4edda;
+  color: #155724;
 }
 
 .ramo.aprobado::after {
@@ -94,4 +90,3 @@ main {
   font-weight: bold;
   color: #155724;
 }
-
