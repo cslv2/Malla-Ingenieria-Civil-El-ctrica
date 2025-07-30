@@ -66,7 +66,7 @@ const ramos = [
   { nombre: "Práctica Profesional II", codigo: "IEIEA2", semestre: 8, prerrequisitos: [] },
 
   // 5º AÑO - Semestre 9
-  { nombre: "Proyecto en Ingeniera Eléctrica, codigo: "IEIE97" , semestre: 9, prerrequisitos: [] },
+  { nombre: "Proyecto en Ingeniera Eléctrica, codigo: "IEIE97", semestre: 9, prerrequisitos: [] },
   { nombre: "Mención Electiva II", codigo: "IEIEX1", semestre: 9, prerrequisitos: [] },
   { nombre: "Mención Electiva III", codigo: "IEIEX2", semestre: 9, prerrequisitos: [] },
   { nombre: "Mención Electiva IV", codigo: "IEIEX3", semestre: 9, prerrequisitos: [] },
