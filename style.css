@@ -109,14 +109,26 @@ header {
   background: #f0f0f0;
   color: #000;
 }
-.logo-footer {
-  height: 24px;
-  margin-right: 8px;
-  vertical-align: middle;
-}
+
 footer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: flex-end; /* usa center si prefieres centrado */
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  font-size: 0.9em;
+  color: #555;
+  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  border-radius: 10px 0 0 0;
+  box-shadow: -2px -2px 5px rgba(0,0,0,0.05);
+}
+
+footer .logo-footer {
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 4px;
 }
