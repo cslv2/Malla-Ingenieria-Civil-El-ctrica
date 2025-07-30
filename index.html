@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    Malla Interactiva Ingeniería Civil Eléctrica
+    <button id="toggle-dark" style="float:right;margin-right:20px;padding:6px 10px;border-radius:6px;border:none;cursor:pointer;background:#fff;color:#333;font-weight:bold;">🌙</button>
+  </header>
   <div id="contenedor-malla"></div>
   <script src="script.js"></script>
+  <script>
+    const toggle = document.getElementById('toggle-dark');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      document.documentElement.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
-
