@@ -1,79 +1,96 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
   margin: 0;
-  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f8;
   overflow-x: auto;
+}
+
+header {
+  background-color: #673ab7;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 #contenedor-malla {
   display: flex;
-  gap: 20px;
-  padding-bottom: 20px;
-  flex-direction: row; /* Horizontal */
-  align-items: flex-start;
+  flex-direction: row;
+  gap: 24px;
+  padding: 20px;
+  overflow-x: auto;
 }
 
 .semestre {
-  background: #ffffff;
-  border: 2px solid #444;
+  background-color: white;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   padding: 15px;
-  min-width: 240px;
+  min-width: 260px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
   flex-shrink: 0;
+}
+
+.semestre:hover {
+  transform: translateY(-4px);
 }
 
 .semestre h3 {
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 8px;
+  font-size: 18px;
 }
 
 .ramo {
-  background-color: #b3e5fc; /* Celeste */
+  background-color: #e3f2fd; /* Celeste */
+  color: #333;
   padding: 10px;
-  margin: 6px 0;
-  text-align: left;
+  margin: 8px 0;
   border-radius: 6px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
   font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .ramo:hover {
-  background-color: #81d4fa;
+  background-color: #bbdefb;
 }
 
 .ramo.aprobado {
-  background-color: #ce93d8; /* Morado */
-  color: #4a004e;
+  background-color: #d1c4e9; /* Morado suave */
   text-decoration: line-through;
+  color: #512da8;
 }
 
 .ramo.aprobado::after {
   content: '✔';
-  color: #4a004e;
-  font-weight: bold;
   position: absolute;
   right: 12px;
   top: 10px;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .ramo.bloqueado {
-  background-color: #dcdcdc; /* Gris */
+  background-color: #f0f0f0;
+  color: #aaa;
   cursor: not-allowed;
-  color: #888;
 }
 
 .ramo.bloqueado::after {
   content: '🔒';
-  font-size: 16px;
   position: absolute;
   right: 12px;
   top: 10px;
-  color: #666;
+  font-size: 16px;
+  color: #999;
 }
