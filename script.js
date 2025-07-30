@@ -15,7 +15,7 @@ const ramos = [
 
   { nombre: "INMT31 - Cálculo II", codigo: "INMT31", semestre: 3, prerrequisitos: ["INMT21"] },
   { nombre: "INFS32 - Física I", codigo: "INFS32", semestre: 3, prerrequisitos: ["INMT21", "INMT22"] },
-  { nombre: "INMT33 - Ecuaciones Diferenciales", codigo: "INMT33", semestre: 3, prerrequisitos: ["INMT31"] },
+  { nombre: "INMT33 - Ecuaciones Diferenciales", codigo: "INMT33", semestre: 3, prerrequisitos: ["INMT21"] },
   { nombre: "INII34 - Taller de Proyecto", codigo: "INII34", semestre: 3, prerrequisitos: ["INIE25"] },
   { nombre: "IEIE37 - Redes Eléctricas I", codigo: "IEIE37", semestre: 3, prerrequisitos: ["INIE27"] },
   { nombre: "INGL5 - Inglés I", codigo: "INGL5", semestre: 3, prerrequisitos: [] },
@@ -65,6 +65,7 @@ const ramos = [
   { nombre: "IEIEA3 - Proyecto Final", codigo: "IEIEA3", semestre: 10, prerrequisitos: ["IEIE97", "IEIEA1", "IEIEA2"] },
   { nombre: "IEIE96 - Hito de Evaluación II", codigo: "IEIE96", semestre: 10, prerrequisitos: [] }
 ];
+
 
 let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
 const semestres = {};
