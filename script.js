@@ -77,7 +77,7 @@ const ramos = [
   { nombre: "Hito de Evaluación III", codigo: "IEIE98", semestre: 10, prerrequisitos: [] }
 ];
 
-let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
+et aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
 const semestres = {};
 for (let i = 1; i <= 10; i++) semestres[i] = [];
 ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
