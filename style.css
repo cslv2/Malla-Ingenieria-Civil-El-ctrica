@@ -1,70 +1,84 @@
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f6f8;
+  background-color: #f5f7fa;
 }
 
 header {
-  background-color: #102c79;
+  background-color: #004080;
   color: white;
+  padding: 20px;
   text-align: center;
-  padding: 1.5rem;
 }
 
-.avance {
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
+#avance {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #fff;
 }
 
 #contenedor-malla {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
   overflow-x: auto;
   padding: 20px;
   gap: 20px;
 }
 
 .semestre {
-  flex: 0 0 auto;
-  background: white;
-  border-radius: 12px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  min-width: 200px;
-  text-align: center;
+  min-width: 250px;
+  flex-shrink: 0;
 }
 
 .semestre h3 {
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-  color: #102c79;
+  text-align: center;
+  background-color: #004080;
+  color: white;
+  padding: 10px;
+  margin: -15px -15px 15px -15px;
+  border-radius: 10px 10px 0 0;
 }
 
 .ramo {
-  background-color: #e0f0ff;
-  border-radius: 8px;
-  margin-bottom: 10px;
   padding: 10px;
+  margin: 5px 0;
+  background-color: #e0f0ff;
+  border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  font-weight: 500;
+  text-align: center;
 }
 
 .ramo:hover {
-  transform: scale(1.03);
-}
-
-.ramo.aprobado {
-  background-color: #b2f2bb;
-  text-decoration: line-through;
+  background-color: #b6e0ff;
 }
 
 .ramo.bloqueado {
-  background-color: #d3d3d3;
-  color: #888;
+  background-color: #ddd;
+  color: #999;
   cursor: not-allowed;
-  font-style: italic;
+}
+
+.ramo.aprobado {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.ramo.aprobado::after {
+  content: "✓";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  color: #155724;
 }
 .ramo.bloqueado::after {
   content: \"🔒\";
