@@ -1,72 +1,78 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f7f7f7;
   margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1a237e;
+  color: white;
   padding: 20px;
   text-align: center;
 }
 
-h1 {
-  margin-bottom: 10px;
+#avance {
+  margin: 10px 0 0;
+  font-size: 1.1em;
 }
 
-#progreso {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-#contenedor-malla {
+main#contenedor-malla {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   overflow-x: auto;
+  padding: 20px;
   gap: 20px;
-  justify-content: start;
-  padding: 10px;
+  justify-content: flex-start;
 }
 
 .semestre {
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
   border-radius: 12px;
   padding: 15px;
-  min-width: 200px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 220px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  flex-shrink: 0;
 }
 
 .semestre h3 {
-  margin-bottom: 10px;
+  text-align: center;
+  margin-top: 0;
 }
 
 .ramo {
+  background-color: #bbdefb;
   margin: 6px 0;
-  padding: 6px;
+  padding: 8px;
+  text-align: center;
   border-radius: 6px;
-  background-color: #cceeff;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
 
 .ramo:hover {
-  background-color: #bbe0ff;
+  background-color: #90caf9;
 }
 
 .ramo.aprobado {
-  background-color: #b388eb;
-  text-decoration: line-through;
+  background-color: #ce93d8;
   color: white;
+  text-decoration: line-through;
 }
 
 .ramo.bloqueado {
   background-color: #ddd;
-  color: #888;
+  color: #999;
   cursor: not-allowed;
   position: relative;
 }
 
 .ramo.bloqueado::after {
-  content: "🔒";
+  content: \"🔒\";
   position: absolute;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
 }
+
