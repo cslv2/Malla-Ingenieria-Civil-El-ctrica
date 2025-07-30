@@ -67,13 +67,15 @@ header {
 }
 
 .ramo.bloqueado::after {
-  content: \"🔒\";
+  content: "\1F512";
+  font-size: 1.3em;
+  color: #666;
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  font-weight: bold;
 }
+
 
 .ramo.aprobado {
   background-color: #d4edda;
