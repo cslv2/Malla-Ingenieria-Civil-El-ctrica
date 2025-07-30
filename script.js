@@ -1,5 +1,3 @@
-// script.js actualizado para la malla interactiva de ICE
-
 const ramos = [
   // 1º AÑO - Semestre 1
   { nombre: "Introducción al Cálculo", codigo: "INMT11", semestre: 1, prerrequisitos: [] },
@@ -77,7 +75,7 @@ const ramos = [
   { nombre: "Hito de Evaluación III", codigo: "IEIE98", semestre: 10, prerrequisitos: [] }
 ];
 
-et aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
+let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
 const semestres = {};
 for (let i = 1; i <= 10; i++) semestres[i] = [];
 ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
@@ -90,7 +88,7 @@ function calcularAvance() {
   const total = ramos.length;
   const cantidad = aprobados.size;
   const porcentaje = ((cantidad / total) * 100).toFixed(1);
-  document.getElementById("avance").textContent = Avance: ${cantidad}/${total} ramos (${porcentaje}%);
+  document.getElementById("avance").textContent = `Avance: ${cantidad}/${total} ramos (${porcentaje}%)`;
 }
 
 function renderMalla() {
@@ -100,7 +98,7 @@ function renderMalla() {
   for (const [semestre, lista] of Object.entries(semestres)) {
     const div = document.createElement("div");
     div.className = "semestre";
-    div.innerHTML = <h3>Semestre ${semestre}</h3>;
+    div.innerHTML = `<h3>Semestre ${semestre}</h3>`;
 
     lista.forEach(ramo => {
       const divRamo = document.createElement("div");
@@ -123,7 +121,7 @@ function renderMalla() {
         }
 
         localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
-        renderMalla(); // Recargar para actualizar bloqueos y avance
+        renderMalla();
       });
 
       div.appendChild(divRamo);
@@ -135,5 +133,4 @@ function renderMalla() {
   calcularAvance();
 }
 
-// Inicialización
 renderMalla();
