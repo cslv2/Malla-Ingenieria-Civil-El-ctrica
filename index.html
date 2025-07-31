@@ -1,24 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Malla Interactiva ICE</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Malla Interactiva Ingeniería Civil Eléctrica</h1>
-    <div class="barra-avance">
-      <span id="avance-porcentaje">Avance: 0%</span>
-      <span id="creditos-acumulados">Créditos acumulados: 0</span>
+    <div class="avance-container">
+      <div id="avance-texto">Avance: 0%</div>
+      <div id="creditos-texto">Créditos acumulados: 0</div>
+      <div class="avance-barra">
+        <div class="avance-barra-interna" id="barra-avance"></div>
+      </div>
     </div>
+    <button id="reiniciar" class="boton-reiniciar">Reiniciar malla</button>
   </header>
 
-  <div id="contenedor-años" class="contenedor-años"></div>
+  <main>
+    <div class="navegacion">
+      <div class="año">Año 1
+        <div class="semestres"><button class="boton-semestre">I</button><button class="boton-semestre">II</button></div>
+      </div>
+      <div class="año">Año 2
+        <div class="semestres"><button class="boton-semestre">III</button><button class="boton-semestre">IV</button></div>
+      </div>
+      <div class="año">Año 3
+        <div class="semestres"><button class="boton-semestre">V</button><button class="boton-semestre">VI</button></div>
+      </div>
+      <div class="año">Año 4
+        <div class="semestres"><button class="boton-semestre">VII</button><button class="boton-semestre">VIII</button></div>
+      </div>
+      <div class="año">Año 5
+        <div class="semestres"><button class="boton-semestre">IX</button><button class="boton-semestre">X</button></div>
+      </div>
+    </div>
 
-  <footer class="creador">
-    <img src="logo-camila.png" alt="Logo UA" class="logo-footer">
+    <div id="contenedor-malla"></div>
+  </main>
+
+  <footer>
+    <img src="logo-camila.png" alt="Logo" class="logo-footer">
     Hecho por <strong>Camila Silva R</strong> 🤍
   </footer>
 
