@@ -77,84 +77,76 @@ const ramos = [
 ];
 
 
-let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
-
 function tienePrerrequisitosAprobados(ramo) {
-  return ramo.prerrequisitos.every(c => aprobados.has(c));
+  return ramo.prerrequisitos.every(cod => aprobados.has(cod));
 }
 
 function calcularAvance() {
   const total = ramos.length;
-  const completados = [...aprobados];
-  const porcentaje = ((completados.length / total) * 100).toFixed(1);
+  const cantidad = aprobados.size;
+  const porcentaje = ((cantidad / total) * 100).toFixed(1);
   const creditos = ramos
-    .filter(r => completados.includes(r.codigo))
+    .filter(r => aprobados.has(r.codigo))
     .reduce((sum, r) => sum + (r.creditos || 0), 0);
 
-  document.getElementById("avance-porcentaje").textContent = `Avance: ${completados.length}/${total} ramos (${porcentaje}%)`;
-  document.getElementById("creditos-acumulados").textContent = `Créditos acumulados: ${creditos}`;
+  document.getElementById("avance-texto").textContent = `Avance: ${cantidad}/${total} ramos (${porcentaje}%)`;
+  document.getElementById("creditos-texto").textContent = `Créditos acumulados: ${creditos}`;
+  document.getElementById("barra-avance").style.width = `${porcentaje}%`;
 }
 
 function renderMalla() {
-  const contenedor = document.getElementById("contenedor-años");
+  const contenedor = document.getElementById("contenedor-malla");
   contenedor.innerHTML = "";
 
-  const agrupadoPorAño = {};
-  ramos.forEach(r => {
-    if (!agrupadoPorAño[r.anio]) agrupadoPorAño[r.anio] = [];
-    agrupadoPorAño[r.anio].push(r);
-  });
+  const semestres = {};
+  for (let i = 1; i <= 10; i++) semestres[i] = [];
 
-  for (const [anio, lista] of Object.entries(agrupadoPorAño)) {
-    const divAnio = document.createElement("div");
-    divAnio.className = "año";
-    divAnio.innerHTML = `<h2>Año ${anio}</h2>`;
+  ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
 
-    const porSemestre = {};
-    lista.forEach(r => {
-      if (!porSemestre[r.semestre]) porSemestre[r.semestre] = [];
-      porSemestre[r.semestre].push(r);
-    });
+  for (const [semestre, lista] of Object.entries(semestres)) {
+    const div = document.createElement("div");
+    div.className = "semestre";
+    const año = Math.ceil(semestre / 2);
+    const semestreTexto = semestre % 2 === 0 ? "2° Semestre" : "1° Semestre";
+    div.innerHTML = `<h3>${año}° Año - ${semestreTexto}</h3>`;
 
-    for (const [semestre, ramosSem] of Object.entries(porSemestre)) {
-      const divSem = document.createElement("div");
-      divSem.className = "semestre";
-      divSem.innerHTML = `<h3>Semestre ${semestre}</h3>`;
+    lista.forEach(ramo => {
+      const divRamo = document.createElement("div");
+      divRamo.className = "ramo";
+      divRamo.textContent = ramo.nombre;
 
-      ramosSem.forEach(ramo => {
-        const divRamo = document.createElement("div");
-        divRamo.className = "ramo";
-        divRamo.textContent = ramo.nombre;
+      const bloqueado = !tienePrerrequisitosAprobados(ramo);
+      const aprobado = aprobados.has(ramo.codigo);
 
-        const aprobado = aprobados.has(ramo.codigo);
-        const bloqueado = !tienePrerrequisitosAprobados(ramo);
+      if (bloqueado && !aprobado) divRamo.classList.add("bloqueado");
+      if (aprobado) divRamo.classList.add("aprobado");
 
-        if (aprobado) divRamo.classList.add("aprobado");
-        else if (bloqueado) divRamo.classList.add("bloqueado");
-
-        divRamo.addEventListener("click", () => {
-          if (divRamo.classList.contains("bloqueado")) return;
-
-          if (aprobados.has(ramo.codigo)) {
-            aprobados.delete(ramo.codigo);
-          } else {
-            aprobados.add(ramo.codigo);
-          }
-
-          localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
-          renderMalla();
-        });
-
-        divSem.appendChild(divRamo);
+      divRamo.addEventListener("click", () => {
+        if (divRamo.classList.contains("bloqueado")) return;
+        if (aprobados.has(ramo.codigo)) {
+          aprobados.delete(ramo.codigo);
+        } else {
+          aprobados.add(ramo.codigo);
+        }
+        localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
+        renderMalla();
       });
 
-      divAnio.appendChild(divSem);
-    }
+      div.appendChild(divRamo);
+    });
 
-    contenedor.appendChild(divAnio);
+    contenedor.appendChild(div);
   }
 
   calcularAvance();
 }
+
+// inicialización
+let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
+document.getElementById("reiniciar").addEventListener("click", () => {
+  aprobados.clear();
+  localStorage.removeItem("aprobadosICE");
+  renderMalla();
+});
 
 renderMalla();
