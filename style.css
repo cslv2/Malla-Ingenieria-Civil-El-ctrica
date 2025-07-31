@@ -1,123 +1,112 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #eafafc;
-  color: #023047;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f6fbff;
   margin: 0;
   padding: 0;
+  color: #333;
 }
 
 header {
-  background-color: #219ebc;
+  background: #003049;
   color: white;
-  padding: 20px;
+  padding: 1rem;
   text-align: center;
 }
 
 .avance-container {
   margin-top: 10px;
-  text-align: center;
 }
 
 .avance-barra {
+  background: #cce0f0;
+  height: 15px;
   width: 80%;
-  height: 20px;
-  background-color: #b0d6d1;
-  margin: 0 auto 10px auto;
+  margin: 0 auto;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .avance-barra-interna {
   height: 100%;
-  background-color: #38b000;
   width: 0%;
-  transition: width 0.8s ease-in-out;
+  background: #00a676;
+  transition: width 0.4s ease-in-out;
 }
 
-#creditos-texto {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.boton-reiniciar {
-  padding: 6px 12px;
-  margin-top: 5px;
-  background-color: #06d6a0;
+#resetear {
+  margin-top: 1rem;
+  background: #00a676;
+  color: white;
   border: none;
-  border-radius: 5px;
-  color: #023047;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-main {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#resetear:hover {
+  background: #008e63;
 }
 
-.navegacion {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+.bloque-anio {
+  margin: 2rem;
+  padding: 1rem;
+  background: #eaf9f3;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
-.año {
-  text-align: center;
-}
-
-.semestres button {
-  margin: 4px;
-  padding: 5px 10px;
-  border: none;
-  background-color: #8ecae6;
-  color: #023047;
-  border-radius: 5px;
-  cursor: pointer;
+.bloque-anio h2 {
+  color: #007d63;
 }
 
 .semestre {
-  margin-bottom: 30px;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #ffffff;
+  border: 2px solid #bde5d0;
+  border-radius: 10px;
+}
+
+.semestre h3 {
+  color: #004c3f;
 }
 
 .ramo {
-  background-color: #bde0fe;
-  border-left: 6px solid #219ebc;
-  margin: 8px;
-  padding: 8px;
+  margin: 0.4rem 0;
+  padding: 0.6rem;
+  background: #d9f4ec;
+  border: 1px solid #99e1c4;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: background 0.2s;
 }
 
 .ramo:hover {
-  transform: scale(1.03);
+  background: #c1efe0;
 }
 
 .ramo.aprobado {
-  background-color: #d9f99d;
-  border-left-color: #38b000;
+  background: #b8e994;
+  text-decoration: line-through;
 }
 
 .ramo.bloqueado {
-  background-color: #dddddd;
-  border-left-color: #999999;
-  cursor: not-allowed;
-  opacity: 0.6;
+  background: #eee;
+  color: #999;
+  border-style: dashed;
 }
 
 footer {
-  margin-top: 20px;
+  margin-top: 2rem;
+  padding: 1rem;
   text-align: center;
-  padding: 20px;
-  background-color: #219ebc;
-  color: white;
+  background: #f0f0f0;
 }
 
 .logo-footer {
-  width: 40px;
-  vertical-align: middle;
+  height: 30px;
   margin-right: 10px;
+  vertical-align: middle;
 }
 
