@@ -1,115 +1,110 @@
-* {
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9f9fc;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-  background: #f4f8fb;
-  color: #222;
-  padding: 20px;
 }
 
 header {
+  background-color: #013a63;
+  color: white;
+  padding: 1rem;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-h1 {
-  font-size: 2rem;
-  color: #107dac;
+.barra-avance {
+  margin-top: 0.5rem;
+  font-size: 1rem;
 }
 
-.avance {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #0c7d64;
-}
-
-.malla {
+.contenedor-años {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.año {
+  background-color: #cce5ff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+.año h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #013a63;
 }
 
 .semestre {
-  background-color: #e0f7fa;
-  border: 2px solid #b2ebf2;
-  border-radius: 10px;
-  padding: 15px;
-  width: 230px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-}
-
-.semestre:hover {
-  transform: translateY(-5px);
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #e3f2fd;
+  border-radius: 8px;
 }
 
 .semestre h3 {
-  margin-bottom: 10px;
-  color: #00695c;
-  font-size: 1.1rem;
+  margin: 0.5rem 0;
   text-align: center;
+  color: #014f86;
 }
 
 .ramo {
-  background-color: #ffffff;
-  border-left: 6px solid #4db6ac;
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+  border-radius: 6px;
+  background-color: #caf0f8;
+  text-align: center;
   cursor: pointer;
-  position: relative;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .ramo:hover {
-  background-color: #e0f2f1;
+  background-color: #ade8f4;
 }
 
-.ramo.aprobado {
-  border-left: 6px solid #2e7d32;
-  background-color: #d0f5d0;
-  color: #2e7d32;
+.aprobado {
+  background-color: #90e0ef !important;
+  color: #014f86;
+  font-weight: bold;
+  position: relative;
 }
 
-.ramo.aprobado::after {
+.aprobado::after {
   content: "✓";
   position: absolute;
   right: 10px;
-  top: 8px;
-  font-size: 1.2rem;
-  color: #2e7d32;
+  font-weight: bold;
 }
 
-.ramo.bloqueado {
-  color: #aaa;
-  background-color: #f0f0f0;
-  border-left: 6px solid #ccc;
+.bloqueado {
+  background-color: #e0e0e0;
+  color: #999;
+  position: relative;
   cursor: not-allowed;
 }
 
-.ramo.bloqueado::after {
+.bloqueado::after {
   content: "🔒";
   position: absolute;
   right: 10px;
-  top: 8px;
-  font-size: 1.2rem;
-  color: #888;
 }
 
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #444;
+footer.creador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  background-color: #f1f1f1;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
 }
 
 .logo-footer {
-  width: 40px;
-  vertical-align: middle;
-  margin-right: 10px;
+  height: 24px;
+  margin-right: 0.5rem;
 }
