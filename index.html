@@ -3,28 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Malla Interactiva ICE</title>
+  <title>Malla Interactiva Ingeniería Civil Eléctrica</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Malla Interactiva Ingeniería Civil Eléctrica</h1>
-    <div id="avance-container">
-      <div id="avance-texto">Avance: 0%</div>
-      <div id="barra-avance"></div>
+    <p id="avance-texto">Avance: 0%</p>
+    <div class="barra-container">
+      <div id="barra-avance" class="barra-avance"></div>
     </div>
+    <button id="resetear">Reiniciar Malla</button>
   </header>
 
-  <main>
-    <div id="contenedor-malla"></div>
-  </main>
-
-  <div class="acciones">
-    <button id="resetear">Reiniciar Malla</button>
-  </div>
+  <div id="contenedor-malla"></div>
 
   <footer>
-    <p>Hecho con 🤍 por <strong>Camila Silva R.</strong></p>
+    <img src="logo-camila.png" alt="Logo" class="logo-footer">
+    Hecho por <strong>Camila Silva R</strong> 🤍
   </footer>
 
   <script src="script.js"></script>
