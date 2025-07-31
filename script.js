@@ -70,51 +70,51 @@ const ramos = [
 
   { nombre: "Hito de Evaluación III", codigo: "IEIE98", semestre: 10, anio: 5, creditos: 2, prerrequisitos: [] }
 ];
-
 let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
 
 function tienePrerrequisitosAprobados(ramo) {
-  return ramo.prerrequisitos.every(cod => aprobados.has(cod));
+  return ramo.prerrequisitos.every(c => aprobados.has(c));
 }
 
-function calcularAvance() {
+function calcularProgreso() {
   const total = ramos.length;
-  const cantidad = aprobados.size;
-  const porcentaje = ((cantidad / total) * 100).toFixed(1);
-  const creditos = ramos
-    .filter(r => aprobados.has(r.codigo))
-    .reduce((sum, r) => sum + r.creditos, 0);
+  const completados = ramos.filter(r => aprobados.has(r.codigo));
+  const porcentaje = ((completados.length / total) * 100).toFixed(1);
+  const creditos = completados.reduce((sum, r) => sum + r.creditos, 0);
 
-  document.getElementById("avance-texto").textContent = `Avance: ${cantidad}/${total} ramos (${porcentaje}%) | Créditos acumulados: ${creditos}`;
-  document.getElementById("barra-avance").style.width = `${porcentaje}%`;
+  document.getElementById("porcentaje").textContent = `${porcentaje}%`;
+  document.getElementById("creditos").textContent = creditos;
+  document.getElementById("barra-progreso").value = porcentaje;
 }
 
 function renderMalla() {
-  const contenedor = document.getElementById("contenedor-malla");
+  const contenedor = document.getElementById("malla");
   contenedor.innerHTML = "";
 
-  const agrupados = {};
+  const estructura = {};
   ramos.forEach(r => {
-    if (!agrupados[r.anio]) agrupados[r.anio] = {};
-    if (!agrupados[r.anio][r.semestre]) agrupados[r.anio][r.semestre] = [];
-    agrupados[r.anio][r.semestre].push(r);
+    if (!estructura[r.anio]) estructura[r.anio] = {};
+    if (!estructura[r.anio][r.semestre]) estructura[r.anio][r.semestre] = [];
+    estructura[r.anio][r.semestre].push(r);
   });
 
-  Object.entries(agrupados).forEach(([anio, semestres]) => {
+  Object.entries(estructura).forEach(([anio, semestres]) => {
     const divAnio = document.createElement("div");
     divAnio.className = "bloque-anio";
+
     const titulo = document.createElement("h2");
     titulo.textContent = `Año ${anio}`;
     divAnio.appendChild(titulo);
 
-    Object.entries(semestres).forEach(([semestre, ramos]) => {
-      const columna = document.createElement("div");
-      columna.className = "semestre";
-      const subtitulo = document.createElement("h3");
-      subtitulo.textContent = `Semestre ${semestre}`;
-      columna.appendChild(subtitulo);
+    Object.entries(semestres).forEach(([sem, lista]) => {
+      const divSem = document.createElement("div");
+      divSem.className = "semestre";
 
-      ramos.forEach(ramo => {
+      const subtitulo = document.createElement("h3");
+      subtitulo.textContent = `Semestre ${sem}`;
+      divSem.appendChild(subtitulo);
+
+      lista.forEach(ramo => {
         const divRamo = document.createElement("div");
         divRamo.className = "ramo";
         divRamo.textContent = `${ramo.nombre} (${ramo.creditos} cr)`;
@@ -136,24 +136,22 @@ function renderMalla() {
           renderMalla();
         });
 
-        columna.appendChild(divRamo);
+        divSem.appendChild(divRamo);
       });
 
-      divAnio.appendChild(columna);
+      divAnio.appendChild(divSem);
     });
 
     contenedor.appendChild(divAnio);
   });
 
-  calcularAvance();
+  calcularProgreso();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("resetear").addEventListener("click", () => {
-    aprobados.clear();
-    localStorage.removeItem("aprobadosICE");
-    renderMalla();
-  });
-
+document.getElementById("reiniciar").addEventListener("click", () => {
+  localStorage.removeItem("aprobadosICE");
+  aprobados.clear();
   renderMalla();
 });
+
+document.addEventListener("DOMContentLoaded", renderMalla);
