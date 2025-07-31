@@ -2,27 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Malla Interactiva Ingeniería Civil Eléctrica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malla Interactiva – Ingeniería Civil Eléctrica</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Malla Interactiva Ingeniería Civil Eléctrica</h1>
-    <p id="avance-texto">Avance: 0%</p>
-    <div class="barra-container">
-      <div id="barra-avance" class="barra-avance"></div>
-    </div>
-    <button id="resetear">Reiniciar Malla</button>
+    <p id="progreso">
+      Avance total: <span id="porcentaje">0.0%</span> |
+      Créditos acumulados: <span id="creditos">0</span>
+    </p>
+    <progress id="barra-progreso" value="0" max="100"></progress>
+    <button id="reiniciar">Reiniciar malla</button>
   </header>
-
-  <div id="contenedor-malla"></div>
-
-  <footer>
-    <img src="logo-camila.png" alt="Logo" class="logo-footer">
-    Hecho por <strong>Camila Silva R</strong> 🤍
-  </footer>
-
+  <main id="malla"></main>
   <script src="script.js"></script>
 </body>
 </html>
