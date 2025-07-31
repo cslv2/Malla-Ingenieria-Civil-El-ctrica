@@ -76,6 +76,15 @@ const ramos = [
   { nombre: "Hito de Evaluación III", codigo: "IEIE98", semestre: 10,anio:10, creditos:3, prerrequisitos: [] }
 ];
 
+let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
+let totalCreditos = 0;
+
+const semestres = {};
+for (let i = 1; i <= 10; i++) semestres[i] = [];
+ramos.forEach(ramo => {
+  semestres[ramo.semestre].push(ramo);
+  totalCreditos += ramo.creditos || 0;
+});
 
 function tienePrerrequisitosAprobados(ramo) {
   return ramo.prerrequisitos.every(cod => aprobados.has(cod));
@@ -85,23 +94,16 @@ function calcularAvance() {
   const total = ramos.length;
   const cantidad = aprobados.size;
   const porcentaje = ((cantidad / total) * 100).toFixed(1);
-  const creditos = ramos
-    .filter(r => aprobados.has(r.codigo))
-    .reduce((sum, r) => sum + (r.creditos || 0), 0);
+  const creditos = ramos.reduce((acc, r) => aprobados.has(r.codigo) ? acc + (r.creditos || 0) : acc, 0);
 
-  document.getElementById("avance-texto").textContent = `Avance: ${cantidad}/${total} ramos (${porcentaje}%)`;
-  document.getElementById("creditos-texto").textContent = `Créditos acumulados: ${creditos}`;
+  document.getElementById("avance-texto").textContent = `Avance: ${porcentaje}%`;
   document.getElementById("barra-avance").style.width = `${porcentaje}%`;
+  document.getElementById("creditos-texto").textContent = `Créditos: ${creditos} / ${totalCreditos}`;
 }
 
 function renderMalla() {
   const contenedor = document.getElementById("contenedor-malla");
   contenedor.innerHTML = "";
-
-  const semestres = {};
-  for (let i = 1; i <= 10; i++) semestres[i] = [];
-
-  ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
 
   for (const [semestre, lista] of Object.entries(semestres)) {
     const div = document.createElement("div");
@@ -122,12 +124,14 @@ function renderMalla() {
       if (aprobado) divRamo.classList.add("aprobado");
 
       divRamo.addEventListener("click", () => {
-        if (divRamo.classList.contains("bloqueado")) return;
+        if (bloqueado) return;
+
         if (aprobados.has(ramo.codigo)) {
           aprobados.delete(ramo.codigo);
         } else {
           aprobados.add(ramo.codigo);
         }
+
         localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
         renderMalla();
       });
@@ -141,12 +145,14 @@ function renderMalla() {
   calcularAvance();
 }
 
-// inicialización
-let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
 document.getElementById("reiniciar").addEventListener("click", () => {
-  aprobados.clear();
-  localStorage.removeItem("aprobadosICE");
-  renderMalla();
+  if (confirm("¿Seguro que deseas reiniciar tu progreso?")) {
+    localStorage.removeItem("aprobadosICE");
+    aprobados = new Set();
+    renderMalla();
+  }
 });
 
 renderMalla();
+
+
