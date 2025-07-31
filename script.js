@@ -77,6 +77,7 @@ const ramos = [
 ];
 
 let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICE")) || []);
+
 const semestres = {};
 for (let i = 1; i <= 10; i++) semestres[i] = [];
 ramos.forEach(ramo => semestres[ramo.semestre].push(ramo));
@@ -99,7 +100,9 @@ function renderMalla() {
   for (const [semestre, lista] of Object.entries(semestres)) {
     const div = document.createElement("div");
     div.className = "semestre";
-    div.innerHTML = `<h3>Semestre ${semestre}</h3>`;
+    const año = Math.ceil(semestre / 2);
+    const semestreTexto = semestre % 2 === 0 ? "2° Semestre" : "1° Semestre";
+    div.innerHTML = `<h3>${año}° Año - ${semestreTexto}</h3>`;
 
     lista.forEach(ramo => {
       const divRamo = document.createElement("div");
@@ -114,13 +117,11 @@ function renderMalla() {
 
       divRamo.addEventListener("click", () => {
         if (divRamo.classList.contains("bloqueado")) return;
-
         if (aprobados.has(ramo.codigo)) {
           aprobados.delete(ramo.codigo);
         } else {
           aprobados.add(ramo.codigo);
         }
-
         localStorage.setItem("aprobadosICE", JSON.stringify([...aprobados]));
         renderMalla();
       });
@@ -134,5 +135,4 @@ function renderMalla() {
   calcularAvance();
 }
 
-// Inicializar
 renderMalla();
