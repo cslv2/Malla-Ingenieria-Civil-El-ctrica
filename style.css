@@ -1,100 +1,134 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f3fdfd;
-  color: #222;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f5f7fa;
 }
 
 header {
-  text-align: center;
-  background-color: #0288d1;
+  background-color: #004080;
   color: white;
   padding: 20px;
+  text-align: center;
 }
 
-h1 {
-  margin: 0;
-  font-size: 1.8rem;
+#avance {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #fff;
 }
 
-#progreso {
-  margin: 10px 0;
-  font-weight: 500;
-}
-
-#barra-progreso {
-  width: 60%;
-  height: 10px;
-  margin-bottom: 10px;
-}
-
-#reiniciar {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#reiniciar:hover {
-  background-color: #388e3c;
-}
-
-#malla {
+#contenedor-malla {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   padding: 20px;
+  gap: 20px;
 }
 
-.bloque-anio {
-  background-color: #e1f5fe;
-  padding: 10px;
+.semestre {
+  background-color: white;
   border-radius: 10px;
-  min-width: 170px;
-}
-
-.bloque-anio h2 {
-  background-color: #81d4fa;
-  color: #003c8f;
-  border-radius: 5px;
-  text-align: center;
-  padding: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  min-width: 250px;
+  flex-shrink: 0;
 }
 
 .semestre h3 {
-  background-color: #4dd0e1;
-  color: white;
-  border-radius: 5px;
   text-align: center;
-  margin: 10px 0 5px;
-  padding: 4px;
+  background-color: #004080;
+  color: white;
+  padding: 10px;
+  margin: -15px -15px 15px -15px;
+  border-radius: 10px 10px 0 0;
 }
 
 .ramo {
-  background-color: #b2ebf2;
-  margin: 4px 0;
-  padding: 6px;
-  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #e0f0ff;
+  border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  font-weight: 500;
+  text-align: center;
 }
 
 .ramo:hover {
-  transform: scale(1.03);
-}
-
-.ramo.aprobado {
-  background-color: #a5d6a7;
-  text-decoration: line-through;
+  background-color: #b6e0ff;
 }
 
 .ramo.bloqueado {
-  background-color: #eeeeee;
+  background-color: #ddd;
   color: #999;
   cursor: not-allowed;
+}
+
+.ramo.bloqueado::after {
+  content: "\1F512";
+  font-size: 1.3em;
+  color: #666;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.ramo.aprobado {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.ramo.aprobado::after {
+  content: \"✓\";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  color: #155724;
+}
+.creador {
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #444;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.creador:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* usa center si prefieres centrado */
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  font-size: 0.9em;
+  color: #555;
+  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  border-radius: 10px 0 0 0;
+  box-shadow: -2px -2px 5px rgba(0,0,0,0.05);
+}
+
+footer .logo-footer {
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 4px;
 }
