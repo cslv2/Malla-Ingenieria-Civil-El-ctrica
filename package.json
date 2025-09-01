@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && rmdir /s /q docs && xcopy dist docs /E /I /Y",
+    "build": "vite build && rmdir /s /q docs && xcopy dist docs /E /I /Y && copy docs\\index.html docs\\404.html",
     "preview": "vite preview"
   },
   "devDependencies": {
